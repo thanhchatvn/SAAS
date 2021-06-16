@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="online_pos_form_view" model="ir.ui.view">
+      <field name="name">online_pos_form_view</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="point_of_sale.view_account_journal_pos_user_form"/>
+      <field name="arch" type="xml">
+
+          <field name="journal_user" position="after">
+            <!-- <field name="card_to_card_payment" attrs="{'invisible': [('journal_user','=',False)]}" /> -->
+            <field name="card_to_card_payment" invisible="1" />
+          </field>
+
+      </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <!--  <template id="custom_title" name="Web layout" inherit_id="web.layout">
+      <xpath expr="//title" position="replace">
+        <title>IATL</title>
+      </xpath>
+    </template> -->
+
+    <template id="login_layout_no_db" inherit_id="web.login_layout" name="Login Layout">
+        <xpath expr="//div[@class='text-center small mt-4 pt-3 border-top']" position="replace"/>
+    </template>
+
+    <template id="login_layout_no_selector" inherit_id="web.login" name="Login">
+    	<xpath expr="//label[@class='col-form-label']" position="replace"/>
+    	<xpath expr="//input[@name='db']" position="attributes">
+    		<attribute name="hidden">1</attribute>
+    	</xpath>
+    	<xpath expr="//span[@class='input-group-append']" position="replace"/>
+    </template>
+
+    <!-- <template id="assets_backend_inherit_change_title" name="change_title assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/web_hid_database/static/src/js/webclint_change_title.js"></script>
+        </xpath>
+
+    </template> -->
+</odoo>

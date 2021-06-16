@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="AppsMenu">
+		<t t-jquery="[t-as=app]" t-operation="after">
+			<div class="footer_home_page">
+				<footer class="footer_home_page" 
+					style="font-size:20px;margin-top: 480px;color: #eae2e2;
+					text-align: right;">
+					<div>
+			            <span>Powered By <a href="http://iatl-sd.com"><img src="/pos_custom/static/src/img/IATL_logo.jpg" /></a></span>
+					</div>
+	        	</footer>
+	        </div>
+        </t>
+	</t>
+
+</templates>

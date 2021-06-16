@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+     <record id="view_crm_customer_form_inherit" model="ir.ui.view">
+          <field name="name">view.crm.customer.form.inherit</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_form"/>
+          <field name="arch" type="xml">
+              <!-- invisible Credit card(s) from form Customer and  Prospect -->
+                <xpath expr="//button[@name='%(payment.payment_token_action)d']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+              <!-- invisible shortcut Invoiced Customer and  Prospect -->
+                <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+              <!-- invisible shortcut Analytic Account Customer and  Prospect -->
+              <xpath expr="//button[@name='%(account.action_open_partner_analytic_accounts)d']" position="attributes">
+                  <attribute name="invisible">1</attribute>
+              </xpath>
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='customer']" position="attributes">
+                        <attribute name="readonly">True</attribute>
+              </xpath>
+          <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='customer']" position="after">
+                 <field name="prospect" readonly="1"/>
+          </xpath>
+          <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='user_id']" position="after">
+                 <field name="sale_team_id"/>
+          </xpath>
+          <xpath expr="//field[@name='vat']" position="replace">
+          <xpath expr="//field[@name='industry_id']" position="move"/>
+          <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='user_id']" position="move"/>
+          <xpath expr="//field[@name='sale_team_id']" position="move"/>
+          </xpath>
+               <!-- Make Field Sector Visible in type individual-->
+                <xpath expr="//field[@name='industry_id']" position="attributes">
+                    <attribute name="attrs"> {'visible': ['|',('is_company', '=', True),('is_company', '=', False)]}</attribute>
+                    <attribute name="readonly">True</attribute>
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+          </field>
+        </record>
+
+         <!-- Action TO Form Prospect-->
+     <record id="action_prospect_form" model="ir.actions.act_window">
+            <field name="name">Prospect</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"default_prospect":1,"default_customer":0}</field>
+            <field name="domain">[('prospect','=',True)]</field>
+            <field name="help" type="html">
+                  <p class="o_view_nocontent_smiling_face">
+                    Create a new prospect in your address book
+                  </p><p>
+                    Odoo helps you easily track all activities related to a prospect.
+                  </p>
+            </field>
+     </record>
+     <!-- This Menu Item must have a parent and an action Prospect -->
+
+     <menuitem id="menu_prospect_action" name="Prospects" parent="crm.crm_menu_sales" action="action_prospect_form" sequence="6"/>
+
+          <record id="base.action_partner_form" model="ir.actions.act_window">
+                <field name="model">res.partner</field>
+                <field name="view_mode">kanban,tree,form,activity</field>
+                <field name="domain">[('customer','=',True)]</field>
+          </record>
+  </data>
+</odoo>

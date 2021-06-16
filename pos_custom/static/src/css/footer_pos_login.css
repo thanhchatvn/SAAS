@@ -1,0 +1,36 @@
+
+.footer_login_pos {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #828282;
+    font-size:22px;
+    padding:20px;
+  	text-align: left;
+    /*margin: auto auto;*/
+}
+
+.footer_left_pane {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #828282;
+    font-size:15px;
+    padding:20px;
+    text-align: left;
+}
+
+.footer_left_pane_img {
+  height: 61px;width: 61px;
+}
+
+/*.footer_powered_by {
+    padding:20px;
+}
+*/
+/*.image_footer {
+  	margin-left: auto;
+  	margin-right: auto;
+}*/

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="point_of_sale_login_assets" inherit_id="point_of_sale.index" name="Footer Login Assets">
+		<xpath expr="." position="inside">
+	        <link rel="stylesheet" type="text/css" href="/pos_custom/static/src/css/footer_pos_login.css"/>
+	    </xpath>
+	</template>
+</odoo>

@@ -1,0 +1,49 @@
+<odoo>
+  <data> 
+    <!-- Form view of Card Information -->
+    <record id="card_information_form" model="ir.ui.view">
+      <field name="name">Card Information Form</field>
+      <field name="model">card.information</field>
+      <field name="arch" type="xml">
+          <form string="Card Information" >
+            <sheet string="Card Information">
+                <group string="Card Information" colspan="2" col="4">
+                  <field name="card_number" />
+                  <field name="end_date" />
+                  <field name="card_type" />
+                  <!-- <field name="partner_id" attrs="{'invisible': [('card_type', '!=', 'partner')], 'required': [('card_type', '=', 'partner')] }"/> -->
+                  <!-- <field name="partner_id" attrs="{'invisible': [('card_type', '!=', 'partner')]}"/> -->
+                  <field name="partner_id" invisible="1"/>
+                  <field name="default_card" attrs="{'invisible': [('card_type', '!=', 'partner')]}"/>
+                </group>
+            </sheet>
+          </form>
+      </field>
+    </record>
+
+    <!-- Tree view of Card Information -->
+    <record id="view_card_information_tree" model="ir.ui.view">
+        <field name="name">Card Information Tree</field>
+        <field name="model">card.information</field>
+        <field name="arch" type="xml">
+            <tree string="Card Information">
+                <field name="card_number" />
+                <field name="end_date" />
+                <field name="card_type" />
+                <field name="partner_id"/>
+                <field name="default_card"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->  
+   <record id="action_card_information_menu" model="ir.actions.act_window">
+      <field name="name">Card Iformation Menu</field>
+      <field name="res_model">card.information</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_Penalty" name="Card Information" parent="account.account_management_menu" action="action_card_information_menu"/>
+  </data>
+</odoo>

@@ -1,0 +1,41 @@
+<odoo>
+    <!-- Add Card information to the Form view of the accounting -->
+    <record id="res_partner_form_view" model="ir.ui.view">
+      <field name="name">res_partner_form_view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="account.view_partner_property_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//group/group[1]/field[@name='bank_ids']" position="replace">
+            <field name="bank_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="bank_id"/>
+                <field name="acc_number"/>
+                <field name="card_information_id"/>
+                <field name="default_card" invisible="1"/>
+                <field name="acc_holder_name" invisible="1"/>
+              </tree>
+            </field>
+          </xpath>
+          
+          
+          <!-- <xpath expr="//page[@name='accounting']/group" position='after'>
+            <group>
+                <field name="card_info_id" wedget="many2many_tags"/>
+            </group>
+          </xpath> -->
+      </field>
+    </record>
+    
+    <!-- Add Card information to the Form view of the accounting -->
+    <!-- <record id="res_bank_form_view" model="ir.ui.view">
+      <field name="name">res_bank_form_view</field>
+      <field name="model">res.bank</field>
+      <field name="inherit_id" ref="base.view_res_bank_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//form/group[1]/field[@name='bic']" position='after'>
+            <field name="card_info_id" wedget="many2many_tags"/>
+          </xpath>
+      </field>
+    </record> -->
+</odoo>

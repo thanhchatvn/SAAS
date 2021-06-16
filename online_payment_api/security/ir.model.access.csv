@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_card_information_manager_id,access.card.information,model_card_information,online_payment_group,1,1,1,1 
+access_card_information_user_id,access.card.information,model_card_information,account.group_account_user,1,1,1,1 
+access_online_payment_server_manager_id,access.online.payment.server,model_online_payment_server,online_payment_group,1,1,1,1 
+access_online_payment_server_user__id,access.online.payment.server,model_online_payment_server,account.group_account_user,1,1,1,1 
+access_card_to_card_transfer_wizard_id,access.card.to.card.transfer.wizard,model_card_to_card_transfer_wizard,account.group_account_user,1,1,1,1 
+

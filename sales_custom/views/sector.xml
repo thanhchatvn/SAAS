@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it Sectors-->
+    <record id="view_crm" model="ir.ui.view">
+      <field name="name">view.crm.team</field>
+      <field name="model">res.partner.industry</field>
+      <field name="inherit_id" ref="base.res_partner_industry_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group" position="after">
+                <!--<field name="sales_person" widget="many2many_tags"/>-->
+
+           <notebook>
+              <page name="members" string="Team Members">
+                                <field name="sales_person"  options="{'not_delete': True}">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                    <div class="o_kanban_record_top">
+                                                        <img t-att-src="kanban_image('res.users', 'image_small', record.id.raw_value)" height="40" width="40" class="oe_avatar oe_kanban_avatar_smallbox mb0" alt="Avatar"/>
+                                                        <div class="o_kanban_record_headings ml8">
+                                                            <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                </page>
+            </notebook>
+
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

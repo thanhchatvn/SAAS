@@ -1,0 +1,73 @@
+<odoo>
+    <data> 
+        <!-- Form view of Online Payment Server -->
+        <record id="online_payment_server_form" model="ir.ui.view">
+            <field name="name">Online Payment Server Form</field>
+            <field name="model">online.payment.server</field>
+            <field name="arch" type="xml">
+                <form string="Online Payment Server" >
+                    <header>
+                        <button 
+                            name="networkIsAlive" type="object" 
+                            string="Test Connection" 
+                            class="oe_highlight"
+                        />
+                        <!-- Workflow-->
+                        <!-- <button name="draft_success" states='draft' type="object" string="Success" class="oe_highlight"/>
+                        <button name="success_done" states='success' type="object" string="Done" class="oe_highlight"/>  -->
+                        <!-- <button name="hotel_room_ready" type="object" states='not_clean' string="Ready" class="oe_highlight"/> -->
+                        
+                            
+                        <field name="state" widget="statusbar" statusbar_visible="draft,success,failed"/>
+                    </header>
+                    <sheet string="Online Payment Server">
+                        <group string="Online Payment Server" colspan="2" col="4">
+                        <field name="url" />
+                        <field name="name" />
+                        <field name="password" password="True"/>
+                        <field name="remember_me" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view of Online Payment Server -->
+        <record id="online_payment_server_tree" model="ir.ui.view">
+            <field name="name">Online Payment Server Tree</field>
+            <field name="model">online.payment.server</field>
+            <field name="arch" type="xml">
+                <tree string="Online Payment Server">
+                    <field name="url" />
+                    <field name="name" />
+                    <field name="password" password="True"/>
+                    <field name="remember_me"/>
+                </tree> 
+            </field>
+        </record>
+
+    <!-- actions opening online.payment.server view -->  
+    <record id="action_online_payment_server_menu" model="ir.actions.act_window">
+      <field name="name">Online Payment Server Menu</field>
+      <field name="res_model">online.payment.server</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem 
+        id="menu_online_payment" 
+        name="Online Payment" 
+        parent="base.menu_custom" 
+        sequence="2"
+    />
+
+    <menuitem 
+        id="menu_online_payment_serever" 
+        name="Server Payment" 
+        parent="menu_online_payment" 
+        action="action_online_payment_server_menu"
+    />
+
+
+    </data>
+</odoo>

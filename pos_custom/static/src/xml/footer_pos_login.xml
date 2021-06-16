@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="LoginScreenWidget">
+		<t t-jquery="div.pos-login" t-operation="after">
+			<footer class="footer_login_pos">
+				<div class="col-lg-4">
+		            <span class="footer_powered_by">Powered By <a href="http://iatl-sd.com"><img src="/pos_custom/static/src/img/IATL_logo.jpg" /></a></span>
+				</div>
+				<!-- <div class="col-lg-4">
+					<a href="http://iatl-sd.com" >
+						<img class="image_footer" src="/pos_custom/static/src/img/logo.png" />
+					</a>
+				</div> -->
+        	</footer>
+        </t>
+	</t>
+	<t t-extend="ProductScreenWidget">
+		<t t-jquery="div.leftpane" t-operation="before">
+			<footer class="footer_left_pane">
+				<div class="col-lg-4">
+		            <span>Powered By <a href="http://iatl-sd.com"><img src="/pos_custom/static/src/img/IATL_logo.jpg" /></a></span>
+				</div>
+				<!-- <div class="col-lg-4">
+					<a href="http://iatl-sd.com" >
+						<img class="footer_left_pane_img" src="/pos_custom/static/src/img/logo.png"/>
+					</a>
+				</div> -->
+        	</footer>
+		</t>
+	</t>
+
+	<t t-extend="SliderWidget">
+		<t t-jquery="div.sidebar_color" t-operation="append">
+			<footer class="footer_left_pane">
+				<div class="col-lg-4">
+		            <span>Powered By <a href="http://iatl-sd.com"><img src="/pos_custom/static/src/img/IATL_logo.jpg" /></a></span>
+				</div>
+				<!-- <div class="col-lg-4">
+					<a href="http://iatl-sd.com" >
+						<img class="footer_left_pane_img" src="/pos_custom/static/src/img/logo.png"/>
+					</a>
+				</div> -->
+        	</footer>
+		</t>
+	</t>
+</templates>
