@@ -1,0 +1,20 @@
+<odoo>
+    
+    <record id="account_payment_custom_form_view" model="ir.ui.view">
+      <field name="name">account.payment.custom.form.view</field>
+      <field name="model">account.payment</field>
+      <field name="inherit_id" ref="account.view_account_payment_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//form/sheet/group/group[2]" position='inside'>
+                <br></br>
+                <field name="from_card_id"  attrs="{'readonly':[('state','in',['posted','sent'])], 'invisible': [('payment_method_code','!=','card2card') ]  }"/>
+                <field name="ipn" password="True" attrs="{'readonly':[('state','in',['posted','sent'])], 'invisible': [('payment_method_code','!=','card2card') ] }"/>
+                <field name="sending_amount" readonly="1"  attrs="{'readonly':[('state','in',['posted','sent'])], 'invisible': [('payment_method_code','!=','card2card') ] }"/>
+                <field name="expDate" readonly="1"  attrs="{'readonly':[('state','in',['posted','sent'])], 'invisible': [('payment_method_code','!=','card2card') ] }"/>
+                <field name="to_card_id" readonly="1" attrs="{'readonly':[('state','in',['posted','sent'])], 'invisible': [('payment_method_code','!=','card2card') ] }"/>
+          </xpath>
+          
+      </field>
+    </record> 
+
+</odoo>

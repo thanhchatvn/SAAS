@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="DeliveryDetailsScreenWidget">
+        <div class="delivery-details-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Back
+                    </span>
+                    <span class='button reload_delivery_orders' style="left: 130px;line-height: 30px;">
+                        <i class="fa fa-refresh reload_order" aria-hidden="true"></i>
+                        Reload
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                    <div>
+                                        <table class='order-list' style="display:none;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order Ref</th>
+                                                    <th>Receipt Ref</th>
+                                                    <th>Customer</th>
+                                                    <th>Order Date</th>
+                                                    <th>Delivery Date</th>
+                                                    <th>Delivery Time</th>
+                                                    <th>Delivery Address</th>
+                                                    <th>Total</th>
+                                                    <th/>
+                                                </tr>
+                                            </thead>
+                                            <tbody class='order-list-contents'>
+                                            </tbody>
+                                        </table>
+                                        <div>
+                                            <div class="kanban-delivery-orders"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="DeliveryOrderViews">
+        <div t-att-data-order-id="order.id" class="delivery_order_container">
+            <div>
+	            <div class="delivery_header">
+	                <div class="order_name">
+	                    <t t-esc="order.pos_reference"/>
+	                </div>
+                    <div class="order_state">
+	                   <t t-if="order.state != 'draft'">
+	                       <span> Paid </span>
+	                   </t>
+                        <t t-else="">
+	                       <div class="blinking"> Unpaid </div>
+	                   </t>
+	                </div>
+	            </div>
+                <div class="delivery_body">
+	                <div>
+	                    <table>
+	                        <tr>
+	                            <td style="border-right: 1px solid #555;width: 30%;">
+	                                Customer
+	                            </td>
+                                <td>
+	                                <t t-esc="order.partner_id[1] or 'None'"/>
+	                            </td>
+	                        </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #555;">
+                                    Date
+                                </td>
+                                <td>
+                                    <t t-esc="order.delivery_date or '-'"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #555;">
+                                    Time
+                                </td>
+                                <td>
+                                    <t t-esc="order.delivery_time or '-'"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #555;">
+                                    Address
+                                </td>
+                                <td>
+                                    <div class="delivery_address">
+                                        <t t-esc="order.delivery_address or '-'"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #555;">
+                                    Amount
+                                </td>
+                                <td>
+                                    <t t-esc="widget.format_currency(order.amount_total) or ''"/>
+                                </td>
+                            </tr>
+	                    </table>
+	                </div>
+	            </div>
+                <div class="delivery_footer">
+                    <div id="change_deliver_state"
+                         t-att-data-id='order.id'
+                         t-att-data-delivery-state="order.delivery_type"
+                         t-att-data-order-state="order.state"
+                         style="cursor:pointer">
+                        <t t-if="order.delivery_type == 'pending'">
+                            Delivered
+                        </t>
+	                </div>
+                    <div id="change_delivery_user"
+                         title="Change Delivery User"
+                         t-att-data-id='order.id'
+                         t-att-data-delivery-user-id="order.delivery_user_id[0]">
+	                    <i class="fa fa-user" aria-hidden="true"></i>
+                        <t t-esc="order.delivery_user_id[1]"/>
+	                </div>
+	            </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SelectVariantScreen">
+         <div class="variant-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span id="variant-popup-cancel" class="button back">
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <h1 id="variant-title-name"></h1>
+                </section>
+                <section class="full-content">
+                     <div class='window'>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class="content-container container-attribute-list"
+                                     style="width: 45%;float: left;padding: 10px;">
+                                    <span class="placeholder-AttributeListWidget"/>
+                                </div>
+                                <!-- <h2 style="text-align:center"> Variants </h2> -->
+                                <div class="content-container container-variant-list"
+                                     style="width: 49%;float: left;border-left: dashed 1px rgb(215,215,215);padding: 10px;">
+                                    <span class="placeholder-VariantListWidget"/>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+    <!-- Attribute and Attributes list Widgets -->
+    <t t-name="AttributeListWidget">
+        <div class='attribute-list-container'>
+            <div class="attribute-list-scroller touch-scrollable">
+                <div class="attribute-list">
+                </div>
+            </div>
+            <span class="placeholder-ScrollbarWidget"/>
+        </div>
+    </t>
+
+    <t t-name="AttributeWidget">
+        <span class='attribute' t-att-data-attribute-id="attribute.id">
+            <div class="attribute-name button selected" t-att-data-attribute-id="attribute.id">
+                <i class="fa fa-minus" aria-hidden="true" style="font-size: 14px;font-weight: normal;"/>
+                <t t-esc="attribute.name"/>
+            </div>
+            <div class='value-list-container'>
+                <div class="value-list">
+                </div>
+            </div>
+        </span>
+    </t>
+
+    <t t-name="AttributeValueWidget">
+        <span class='attribute-value' t-att-data-attribute-id="value.attribute_id[0]"
+              t-att-data-attribute-value-id="value.id">
+            <div class="button">
+                <div class="attribute-value-header">
+                    <span class="variant-quantity">
+                        <t t-esc="variant_qty"/>
+                        Variants
+                    </span>
+                </div>
+                <div class="attribute-value-name">
+                    <t t-esc="value.name"/>
+                </div>
+            </div>
+        </span>
+    </t>
+
+
+    <!-- Variant and Variants List Widgets -->
+    <t t-name="VariantListWidget">
+        <div class='variant-list-container'>
+            <div class="variant-list-scroller touch-scrollable">
+                <div class="variant-list">
+                </div>
+            </div>
+            <span class="placeholder-ScrollbarWidget"/>
+        </div>
+    </t>
+
+    <t t-name="VariantWidget">
+        <span class='variant' t-att-data-variant-id="variant.id">
+            <div class="variant-header">
+            	<img t-att-src='image_url'/>
+                <t t-if="!variant.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.format_currency(variant.get_price(pricelist, 1),'Product Price')"/>
+                    </span>
+                    <!--                     <t t-if="widget.pos.config.show_qty and widget.pos.get_cashier().access_show_qty"> -->
+                    <t t-if="variant.qty_available &gt; 0 and variant.type != 'service'">
+                            <span class="product-qty">
+                                <t t-esc="variant.qty_available"/>
+                            </span>
+                        </t>
+                    <t t-if="variant.qty_available &lt;= 0 and variant.type != 'service'">
+                            <span class="product-qty-low">
+                                <t t-esc="variant.qty_available"/>
+                            </span>
+                        </t>
+                    <!--                     </t> -->
+                </t>
+                <t t-if="variant.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.format_currency(variant.get_price(pricelist, 1),'Product Price')+'/'+widget.pos.units_by_id[variant.uom_id[0]].name"/>
+                    </span>
+                    <!--                     <t t-if="widget.pos.config.show_qty and widget.pos.get_cashier().access_show_qty"> -->
+                    Product Qty:
+                    <t t-esc="variant.qty_available"></t>
+                    <t t-if="variant.qty_available >= 0">
+                            <span class="product-qty">
+                                <t t-esc="variant.qty_available.toFixed(2) + ' Kgs'"/>
+                            </span>
+                        </t>
+                    <t t-if="variant.qty_available &lt;= 0">
+                            <span class="product-qty-low">
+                                <t t-esc="variant.qty_available.toFixed(2) + ' Kgs'"/>
+                            </span>
+                        </t>
+                    <!--                     </t> -->
+                </t>
+            </div>
+            <div class="variant-name">
+                <t t-esc="variant.display_name"/>
+            </div>
+        </span>
+    </t>
+
+</templates>

@@ -1,0 +1,7 @@
+res = {"id":222,"type":"doCardTransfer","pan":"012458796655","expDate":"22135","tranAmount":320.0,"toCard":"9888190191237806","balance":null,"dynamicFees":0.0,"tranDateTime":"230120014038","phoneNumber":null,"uuid":"16f1273a-141b-4ff4-a993-dc3f79c9327e","responseCode":"600","responseMessage":"INVALID_IPIN_BLOCK","responseStatus":"Failed","ebsResponse":"{\"PAN\":\"012458796655\",\"tranCurrency\":\"SDG\",\"toCard\":\"9888190191237806\",\"responseCode\":600,\"accountCurrency\":null,\"fromAccountType\":\"00\",\"issuerTranFee\":0,\"UUID\":\"16f1273a-141b-4ff4-a993-dc3f79c9327e\",\"applicationId\":\"ZoalPay\",\"expDate\":\"22135\",\"authenticationType\":\"00\",\"tranDateTime\":\"230120014038\",\"dynamicFees\":0,\"responseMessage\":\"INVALID_IPIN_BLOCK\",\"balance\":null,\"toAccountType\":\"00\",\"tranAmount\":320,\"acqTranFee\":0,\"responseStatus\":\"Failed\",\"fromAccount\":null,\"mbr\":\"0\"}"} YY 22021 21/3 2103  
+"""                                                                                     
+-when sending expiration data take the last 2 digit from the year 2021 +> take 21
+-and from the month take the number 3 +> take 3 
+-so the last result that will be send to the server will be +> 2103 bbbbbbbbbbbbbbbbbfbnm        
+
+"""

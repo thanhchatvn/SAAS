@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Custom Button -->
+<templates id="template" xml:space="preserve">
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.screen-content" t-operation="after">
+            <div id="cardfrom" class="card2card_form">
+                <div class="col-75">
+                    <div class="container">
+                        <h1>Enter cards information</h1>
+                        <form>
+                            <div class="form__group">
+                                <input class="form__input" id="fromcard" name="fromcard" type="text" placeholder="From Card" required="1"/>
+                            </div>
+
+                            <div class="form__group">
+                                <input class="form__input" id="ipn" name="ipncard" type="password" placeholder="IPN" required="1"/>
+                            </div>
+
+                            <div class="form__group">
+                                <input class="form__input" id="expDate" name="expDate" type="date" placeholder="Card Expiration Date" required="1"/>
+                                <!-- <input class="form__input" id="expDate" name="expDate" type="text" placeholder="Card Expiration Date" required="1"/> -->
+                            </div>
+
+                            <div class="form__group">
+                                <input class="form__input" id="amountcard" name="cardamount" type="text" placeholder="Amount" readonly="1"/>
+                            </div>
+
+                            <div class="form__group">
+                                <input class="form__input" style="opacity: 0 !important" id="tocard" name="cardto" type="text" placeholder="To Card" readonly="1"/>
+                            </div>
+
+                            <div class="form_buts">
+                                <button class="cbtn cbtn-submit " id="btnSubmit" type="submit">Submit</button>
+                                <button class="cbtn cbtn-cancel " id="btnCancel" type="button">Cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <!-- <t t-name="CustomButton">
+        <span class="control-button">
+            <i class="fa fa-print"></i>
+            Custom Button
+        </span>
+    </t> -->
+
+    <t t-name="OnlinePaymentWidget">
+        <div class="card2card_form">
+            <h1>Enter cards information</h1>
+             <form>
+                    From Card:<br></br>
+                    <input type="text" name="fromCard" /><br></br>
+                    To Card  :<br></br>
+                    <input type="text" name="toCard" readonly="1"/>
+                    Amount  :<br></br>
+                    <input type="text" name="amount" /><br></br>
+                    <button>submit</button>
+            </form>
+
+        </div>
+    </t>
+
+    <t t-name="PopupButton">
+        <div class="control-button">
+            <i class="fa fa-list-alt" /> Popup Button
+        </div>
+    </t>
+
+
+</templates>

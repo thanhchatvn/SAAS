@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <!--Inherit Form View to Modify it sale order -->
+        <record id="sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="no_create">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="sale.sale_menu_root"
+            name="Sales"
+            web_icon="sale,static/description/icon.png"
+            active="False"
+            sequence="7"
+            groups="sales_team.group_sale_salesman_all_leads"/>
+
+        <!-- restrict creation of quotation from users in crm-->
+        <record id="view_sale_order_kanban_inherit" model="ir.ui.view">
+            <field name="name">view.sale.order.kanban.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+            </field>
+        </record>
+
+      <record id="view_quotation_tree_inherit" model="ir.ui.view">
+      <field name="name">view.quotation.tree.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree"/>
+      <field name="arch" type="xml">
+         <xpath expr="//tree" position="attributes">
+                 <attribute name="create">false</attribute>
+            </xpath>
+      </field>
+      </record>
+
+     <record id="view_quotation_form_inherit" model="ir.ui.view">
+      <field name="name">view.quotation.form.inherit</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+         <xpath expr="//form" position="attributes">
+                 <attribute name="create">false</attribute>
+            </xpath>
+      </field>
+    </record>
+
+
+
+
+
+
+        </data>
+</odoo>

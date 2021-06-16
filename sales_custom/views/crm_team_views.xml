@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it CRM Team-->
+    <record id="view_crm_team_form_inherit" model="ir.ui.view">
+      <field name="name">view.crm.team.form.inherit</field>
+      <field name="model">crm.team</field>
+      <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page[1]" position="after">
+            <page string="Allowed Members">
+              <group>
+                <field name="allow_member" widget="many2many_tags"/>
+              </group>
+            </page>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="crm_lead_view" model="ir.ui.view">
+    <field name="name">crm.lead.view</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+    <field name="arch" type="xml">
+        <!--Add Mark Lost Wizard in mark lost button-->
+        <xpath expr="//button[@name='action_set_lost']" position="attributes">
+            <attribute name="type">action</attribute>
+            <attribute name="name">%(crm.crm_lead_lost_action)d</attribute>
+            <attribute name="context">{'default_lead_id': active_id}</attribute>
+        </xpath>
+       <!--Adding service field -->
+        <xpath expr="//field[@name='mobile']" position="after">
+            <field name="template" />
+        </xpath>
+        <xpath expr="//field[@name='partner_id']" position="attributes">
+            <attribute name="groups">base.group_user</attribute>
+            <attribute name="string">Prospect</attribute>
+            <attribute name="domain">[('prospect','=',True)]</attribute>
+        </xpath>
+        <!--Add markting group-->
+        <xpath expr="//page[1]" position="before">
+            <page string="Marketing">
+                <group string="Marketing">
+                    <field name="campaign_id"/>
+                    <field name="medium_id"/>
+                </group>
+            </page>
+        </xpath>
+    </field>
+   </record>
+
+  </data>
+</odoo>

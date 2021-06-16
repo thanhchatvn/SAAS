@@ -1,0 +1,145 @@
+<odoo>
+    <data>
+
+        <record id="view_crm_form_inherit" model="ir.ui.view">
+            <field name="name">view_crm_form_inherit</field>
+            <field name="model">crm.stage</field>
+            <field name="inherit_id" ref="crm.crm_stage_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fold']" position="after">
+                    <field name="stage" widget="radio"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_convert_form_inherit" model="ir.ui.view">
+            <field name="name">view_convert_form_inherit</field>
+            <field name="model">crm.lead2opportunity.partner</field>
+            <field name="inherit_id" ref="crm.view_crm_lead2opportunity_partner"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_crm_search" model="ir.ui.view">
+            <field name="name">view.crm.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="prospect" string="Prospect"/>
+                    <!--<filter name="prospect" string="Prospect" context="{'group_by' : 'prospect'}"/>-->
+                    <filter string="Prospects" name="prospect" domain="[('prospect','=',True)]"/>
+                </search>
+
+            </field>
+        </record>
+        <!-- Inherit Form View to Modify it CRM Lead -->
+        <record id="crm_lead_view_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.view.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_name']" position="after">
+                    <field name="sector" readonly="False" force_save="True"/>
+                </xpath>
+
+                <xpath expr="//button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="attributes">
+                    <attribute name="context">{'default_sector': sector,}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it CRM Opportunity -->
+        <record id="crm_opportunity_view_inherit" model="ir.ui.view">
+            <field name="name">crm.opportunity.view.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@type='action']" position="replace">
+                    <button string="New Quotation" name="action_new_quotation" type="object" class="oe_highlight"
+                            context="{'search_default_partner_id': partner_id,
+                                  'default_partner_id': partner_id,
+                                   'default_origin': name,
+
+                                  }"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">['|',('customer','=',True),('prospect','=',True)]</attribute>
+                    <attribute name="context">{'default_customer':False, 'default_prospect':True}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="prospect" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="before">
+                    <field name="template_id" groups="sale_management.group_sale_order_template"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="industry_id" readonly="1"/>
+                </xpath>
+                <!--  Adding Service and Sector field to follow up tab-->
+                <xpath expr="//field[@name='mobile']" position="after">
+                     <field name="sector"/>
+                </xpath>
+                 <xpath expr="//field[@name='sector']" position="after">
+                     <field name="template"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Kanban View to Modify it CRM make prospect =True, Customer=False when create customer from kanban view -->
+         <record id="view_create_opportunity_simplified_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.simple</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+            <field name="arch" type="xml">
+                 <field name="partner_id" position="attributes">
+                    <attribute name="domain">['|',('customer','=',True),('prospect','=',True)]</attribute>
+                    <attribute name="context">{'default_customer':False, 'default_prospect':True}</attribute>
+                 </field>
+            </field>
+        </record>
+
+        <record id="quick_create_opportunity_form_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.quick_create</field>
+            <field name="model">crm.lead</field>
+             <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">['|',('customer','=',True),('prospect','=',True)]</attribute>
+                    <attribute name="context">{'default_customer':False, 'default_prospect':True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!--  Form View to Modify it CRM Lead Search Quotation Template -->
+        <record id="crm_opportunities_view_filter_inherit" model="ir.ui.view">
+            <field name="name">quotation.template.search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="template_id" string="Service" groups="sale_management.group_sale_order_template"/>
+                    <field name="industry_id" string="Sector"/>
+                </search>
+                <xpath expr="//filter[@name='source']" position="after">
+
+                    <filter string="Service" name="template_id" context="{'group_by':'template_id'}"
+                            groups="sale_management.group_sale_order_template"/>
+                </xpath>
+                <xpath expr="//filter[@name='stage']" position="after">
+                    <filter string="Sector" name="industry_id" context="{'group_by':'industry_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <!--make the lead menu appear only for the team leader-->
+        <record model="ir.ui.menu" id="crm.crm_menu_leads">
+            <field name="name">leads</field>
+            <field name="groups_id" eval="[(6,0,[ref('sales_team.group_sale_salesman_all_leads')])]"/>
+        </record>
+    </data>
+</odoo>

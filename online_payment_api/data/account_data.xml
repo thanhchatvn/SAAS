@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="account_journal_data_card_in" model="account.payment.method">
+            <field name="name">Card to Card</field>
+            <field name="code">card2card</field>
+            <field name="payment_type">inbound</field>
+        </record>
+
+        <record id="account_journal_data_card_out" model="account.payment.method">
+            <field name="name">Card to Card</field>
+            <field name="code">card2card</field> 
+            <field name="payment_type">outbound</field>
+        </record>
+    </data>
+</odoo>

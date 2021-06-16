@@ -1,0 +1,8 @@
+<odoo>
+	<template id="assets_backend_pos2" name="POS2 Sales" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pos_card2card_payment/static/src/js/card2cardPos.js"></script>
+            <link rel="stylesheet" type="text/css" href="/pos_card2card_payment/static/src/css/popup_form_style.css"/>
+        </xpath>
+    </template>
+</odoo>

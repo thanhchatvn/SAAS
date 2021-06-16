@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="online_payment_access_categ" model="ir.module.category">
+        <field name="name">Online Payment Management</field>
+    </record>
+
+    <!-- Group of manager -->
+    <record id="online_payment_group" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="help">Online Payment Manager</field>
+        <field name="category_id" ref="online_payment_access_categ"/>
+    </record>
+
+    <!-- <record id="hr_training_plan.line_comp_rule" model="ir.rule">
+        <field name="name">Hr Training Plan Line</field>
+        <field name="model_id" ref="model_hr_training_plan_line" />
+        <field name="global" eval="True"/>
+        <field name="doami_force"> ['|', ('company_id','=',False), ('company_id','child_of',[user.company_id.id])] </field>
+    </record> -->
+</odoo>

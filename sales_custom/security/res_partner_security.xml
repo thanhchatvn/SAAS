@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_personal_rule" model="ir.rule">
+        <field name="name">Personal Customer of Sales Person</field>
+        <field ref="model_res_partner" name="model_id"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('id','=',user.partner_id.id)]
+
+		</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+    </record>
+
+     <record id="res_partner_team_manager_rule" model="ir.rule">
+        <field name="name">All Customer of Team Manager</field>
+        <field ref="model_res_partner" name="model_id"/>
+        <field name="domain_force">['|',('team_id.user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+
+      <record id="res_partner_sales_manager_rule" model="ir.rule">
+        <field name="name">All Customer of Sales Manager</field>
+        <field ref="model_res_partner" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+    </record>
+
+</odoo>

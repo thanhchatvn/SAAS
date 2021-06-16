@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_Sales_custom_product_attribute_custom_value ,sales_custom.product.attribute.custom.value,sale.model_product_attribute_custom_value,sales_team.group_sale_salesman,1,0,0,0
+access_Sales_custom_res_users ,sales_custom.res.users,crm.model_res_users,sales_team.group_sale_salesman,1,0,0,0

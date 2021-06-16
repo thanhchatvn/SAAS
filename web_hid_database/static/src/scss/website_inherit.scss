@@ -1,0 +1,16 @@
+// Copyright
+.o_footer_copyright {
+    padding: 8px;
+    font-size: 22px;
+    .js_language_selector {
+        display: inline-block;
+    }
+    @include media-breakpoint-up(md) {
+        .row {
+            display: flex;
+            > div {
+                margin: auto 0;
+            }
+        }
+    }
+}
